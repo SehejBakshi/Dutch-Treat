@@ -10,7 +10,7 @@ namespace DutchTreat.ViewModels
     public class ContactViewModel
     {
         [Required]
-        [MinLength(4)]
+        [MinLength(4, ErrorMessage = "Name must be greater than 4 characters!")]
         public string Name { get; set; }
         [Required]
         [EmailAddress]
