@@ -1,0 +1,5 @@
+{
+	"ConnectionStrings": {
+		"DutchContextdb": "Data Source=(localdb)\\ProjectModels;Initial Catalog=DutchTreatDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true;"
+	}
+}
