@@ -1,0 +1,2 @@
+﻿///<reference path="C:/Users/SBakshi/.nuget/packages/jquery/3.5.1/Content/Scripts/jquery-3.5.1.js" />
+///<reference path="C:/Users/SBakshi/.nuget/packages/jquery/3.5.1/Tools/jquery-3.5.1.intellisense.js" />
