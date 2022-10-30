@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using AutoMapper;
+using System.Reflection;
 
 namespace DutchTreat
 {
@@ -21,6 +23,8 @@ namespace DutchTreat
             services.AddDbContext<DutchContext>();
 
             services.AddTransient<DutchSeeder>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IDutchRespository, DutchRespository>();
             
