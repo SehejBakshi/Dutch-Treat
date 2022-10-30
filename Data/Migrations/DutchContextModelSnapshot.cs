@@ -34,6 +34,7 @@ namespace DutchTreat.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("OrderNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
