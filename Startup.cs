@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using AutoMapper;
 using System.Reflection;
+using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace DutchTreat
 {
@@ -20,6 +22,12 @@ namespace DutchTreat
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<StoreUser, IdentityRole>(cfg =>
+            {
+                cfg.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<DutchContext>();
+
             services.AddDbContext<DutchContext>();
 
             services.AddTransient<DutchSeeder>();
@@ -51,6 +59,9 @@ namespace DutchTreat
             app.UseStaticFiles();
             
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(cfg =>
             {
