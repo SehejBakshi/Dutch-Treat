@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Account\Login.cshtml" />
     <None Include="wwwroot\js\index.js" />
   </ItemGroup>
 
