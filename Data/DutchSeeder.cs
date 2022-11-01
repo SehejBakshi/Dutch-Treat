@@ -56,13 +56,6 @@ namespace DutchTreat.Data
                 var order = _ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
                 if(order != null)
                 {
-                    /*
-                     
-                    OrderDate = DateTime.Today,
-                    OrderNumber = "1000",
-                    Items = new List<OrderItem>()
-
-                    */
                     order.User = user;
                     order.Items = new List<OrderItem>()
                     {
@@ -74,9 +67,6 @@ namespace DutchTreat.Data
                         }
                     };
                 }
-
-               //  _ctx.Orders.Add(order);
-
                 _ctx.SaveChanges();
             }
         }

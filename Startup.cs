@@ -15,11 +15,18 @@ using AutoMapper;
 using System.Reflection;
 using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace DutchTreat
 {
     public class Startup
     {
+        private readonly IConfiguration _config;
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentity<StoreUser, IdentityRole>(cfg =>
@@ -28,7 +35,20 @@ namespace DutchTreat
             })
                 .AddEntityFrameworkStores<DutchContext>();
 
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidIssuer = _config["Tokens:Issuer"],
+                        ValidAudience = _config["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                    };
+                });
+
             services.AddDbContext<DutchContext>();
+            services.AddTransient<IMailService, NullMailService>();
 
             services.AddTransient<DutchSeeder>();
 
@@ -36,7 +56,6 @@ namespace DutchTreat
 
             services.AddScoped<IDutchRespository, DutchRespository>();
             
-            services.AddTransient<IMailService, NullMailService>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation()
@@ -65,11 +84,12 @@ namespace DutchTreat
 
             app.UseEndpoints(cfg =>
             {
-                cfg.MapRazorPages();
 
                 cfg.MapControllerRoute("Default",
                     "/{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" });
+                
+                cfg.MapRazorPages();
             });
         }
     }

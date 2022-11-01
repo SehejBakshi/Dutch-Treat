@@ -14,14 +14,12 @@ namespace DutchTreat
             //CreateHostBuilder(args).Build().Run();
             var host = BuildWebHost(args);
 
-            if (args.Length == 1 && args[0].ToLower() == "/seed")
+            if (args.Length > 0 && args[0].ToLower() == "/seed")
             {
                 RunSeeding(host);
+                return;
             }
-            else
-            {
-                host.Run();
-            }
+            host.Run();
         }
 
         private static void RunSeeding(IWebHost host)

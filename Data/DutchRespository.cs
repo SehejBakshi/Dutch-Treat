@@ -34,6 +34,7 @@ namespace DutchTreat.Data
                     .ToList();
             }
         }
+
         public Order GetOrderById(int id)
         {
             return _ctx.Orders
