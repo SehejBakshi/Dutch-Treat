@@ -1,5 +1,15 @@
 ﻿@model IEnumerable<Product>
-<h1>Shop</h1>
+@section Scripts {
+    <script src="~/client/vendor.js"></script>
+    <script src="~/client/polyfills.js"></script>
+    <script src="~/client/runtime.js"></script>
+    <script src="~/client/main.js" asp-append-version="true"></script>
+}
+@section head {
+    <link href="~/client/styles.css" rel="stylesheet" />
+}
+<the-shop></the-shop>
+@*<h1>Shop</h1>
 <p>Count: @Model.Count()</p>
 <div class="row">
     @foreach(var p in Model)
@@ -18,4 +28,4 @@
         </div>
     </div>
     }
-</div>
+</div>*@

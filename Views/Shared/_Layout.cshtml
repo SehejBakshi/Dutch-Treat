@@ -5,6 +5,7 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="~/lib/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    @RenderSection("head", false)
 </head>
 <body>
     <div class="row">
@@ -19,15 +20,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" asp-controller="App" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="App" asp-action="Shop">Shop</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="App" asp-action="About">About</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="Shop">Shop</a>
+                        </li>
+
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
