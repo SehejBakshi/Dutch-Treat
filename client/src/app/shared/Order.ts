@@ -25,7 +25,7 @@
 export class Order {
     orderId: number;
     orderDate: Date;
-    orderNumber: string;
+    orderNumber: string = Math.random().toString(36).substr(2, 5);
     items: OrderItem[];
 
     get subtotal(): number {
@@ -40,7 +40,7 @@ export class Order {
     constructor() {
         this.orderId = 0;
         this.orderDate = new Date();
-        this.orderNumber = '';
+        this.orderNumber = Math.random().toString(36).substr(2, 5);
         this.items = [];
     }
 }
